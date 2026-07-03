@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Контакты — Руслан Исмаилов</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, 'SF Pro Display', Helvetica, Arial, sans-serif; background: #000; color: #fff; }
+
+  /* NAV */
+  nav {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1rem 2.5rem;
+    background: rgba(0,0,0,0.92);
+    border-bottom: 0.5px solid rgba(255,255,255,0.1);
+    position: sticky; top: 0; z-index: 100;
+    backdrop-filter: blur(12px);
+  }
+  .nav-logo { font-size: 13px; font-weight: 500; letter-spacing: 0.14em; }
+  .nav-links { display: flex; gap: 2rem; }
+  .nav-links a { font-size: 12px; color: rgba(255,255,255,0.5); text-decoration: none; letter-spacing: 0.03em; transition: color 0.2s; }
+  .nav-links a:hover { color: #fff; }
+  .nav-links .active { color: #fff; border-bottom: 0.5px solid rgba(255,255,255,0.4); padding-bottom: 1px; }
+  .nav-cta {
+    font-size: 12px; font-weight: 500; padding: 7px 20px;
+    background: #fff; color: #000; border-radius: 20px;
+    cursor: pointer; text-decoration: none; display: inline-block;
+  }
+
+  /* HERO */
+  .hero {
+    padding: 5rem 2.5rem 4rem;
+    background: #000;
+    border-bottom: 0.5px solid rgba(255,255,255,0.08);
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+  }
+  .hero-eyebrow { font-size: 11px; color: rgba(255,255,255,0.35); letter-spacing: 0.16em; font-weight: 500; margin-bottom: 1.2rem; }
+  .hero-title { font-size: 46px; font-weight: 500; letter-spacing: -0.025em; line-height: 1.05; color: #fff; margin-bottom: 1.2rem; }
+  .hero-sub { font-size: 15px; color: rgba(255,255,255,0.45); line-height: 1.7; margin-bottom: 2.5rem; max-width: 420px; }
+
+  /* TELEGRAM MAIN BUTTON */
+  .tg-btn {
+    display: inline-flex; align-items: center; gap: 12px;
+    padding: 16px 32px;
+    background: #2AABEE; color: #fff;
+    border-radius: 28px; font-size: 15px; font-weight: 500;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .tg-btn:hover { background: #229ED9; transform: translateY(-1px); }
+  .tg-btn svg { width: 22px; height: 22px; fill: #fff; flex-shrink: 0; }
+  .tg-handle { font-size: 12px; color: rgba(255,255,255,0.5); margin-top: 12px; letter-spacing: 0.04em; }
+
+  /* CONTACT CARDS RIGHT */
+  .contact-cards { display: flex; flex-direction: column; gap: 12px; }
+  .ccard {
+    background: #111; border: 0.5px solid rgba(255,255,255,0.1);
+    border-radius: 18px; padding: 1.4rem 1.6rem;
+    display: flex; align-items: center; gap: 16px;
+    text-decoration: none;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .ccard:hover { background: #1a1a1a; border-color: rgba(255,255,255,0.2); }
+  .ccard-icon {
+    width: 46px; height: 46px; border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; flex-shrink: 0;
+  }
+  .ccard-ic-tg { background: rgba(42,171,238,0.15); }
+  .ccard-ic-phone { background: rgba(29,158,117,0.15); }
+  .ccard-ic-mail { background: rgba(232,196,255,0.15); }
+  .ccard-label { font-size: 11px; color: rgba(255,255,255,0.35); letter-spacing: 0.08em; margin-bottom: 3px; }
+  .ccard-value { font-size: 15px; font-weight: 500; color: #fff; }
+  .ccard-arrow { margin-left: auto; font-size: 16px; color: rgba(255,255,255,0.25); }
+
+  /* RESPONSE TIME */
+  .response-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(29,158,117,0.12); border: 0.5px solid rgba(29,158,117,0.2);
+    border-radius: 12px; padding: 8px 14px;
+    font-size: 12px; color: #1D9E75; margin-top: 1rem;
+  }
+  .response-dot { width: 6px; height: 6px; border-radius: 50%; background: #1D9E75; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+
+  /* LOCATIONS MINI */
+  .locations-section {
+    padding: 3rem 2.5rem;
+    background: #080808;
+    border-bottom: 0.5px solid rgba(255,255,255,0.08);
+  }
+  .section-eyebrow { font-size: 11px; color: #E8C4FF; letter-spacing: 0.14em; font-weight: 500; margin-bottom: 0.5rem; }
+  .section-title { font-size: 24px; font-weight: 500; color: #fff; letter-spacing: -0.01em; margin-bottom: 1.8rem; }
+  .loc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .loc-card {
+    background: #111; border: 0.5px solid rgba(255,255,255,0.1);
+    border-radius: 18px; padding: 1.6rem;
+  }
+  .loc-metro {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 11px; font-weight: 500; letter-spacing: 0.08em;
+    margin-bottom: 0.8rem;
+  }
+  .loc-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .loc-address { font-size: 16px; font-weight: 500; color: #fff; line-height: 1.4; margin-bottom: 0.4rem; }
+  .loc-sub { font-size: 12px; color: rgba(255,255,255,0.35); line-height: 1.6; }
+  .loc-walk { display: flex; align-items: center; gap: 6px; font-size: 11px; color: rgba(255,255,255,0.3); margin-top: 0.8rem; }
+
+  .loc-tg-hint {
+    margin-top: 16px;
+    background: rgba(42,171,238,0.06); border: 0.5px solid rgba(42,171,238,0.15);
+    border-radius: 12px; padding: 14px 18px;
+    display: flex; align-items: center; gap: 12px;
+    font-size: 13px; color: rgba(255,255,255,0.5);
+  }
+  .loc-tg-hint strong { color: #2AABEE; }
+
+  /* FAQ */
+  .faq-section {
+    padding: 3rem 2.5rem;
+    background: #000;
+    border-bottom: 0.5px solid rgba(255,255,255,0.08);
+  }
+  .faq-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 1.8rem; }
+  .faq-card {
+    background: #111; border: 0.5px solid rgba(255,255,255,0.1);
+    border-radius: 16px; padding: 1.4rem 1.6rem;
+  }
+  .faq-q { font-size: 14px; font-weight: 500; color: #fff; margin-bottom: 0.5rem; line-height: 1.4; }
+  .faq-a { font-size: 13px; color: rgba(255,255,255,0.42); line-height: 1.7; }
+
+  /* CTA STRIP */
+  .cta-strip {
+    background: #2AABEE; padding: 3rem 2.5rem;
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 2rem;
+  }
+  .cta-strip h2 { font-size: 24px; font-weight: 500; color: #fff; letter-spacing: -0.01em; }
+  .cta-strip p { font-size: 14px; color: rgba(255,255,255,0.7); margin-top: 5px; }
+  .cta-tg-btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 14px 30px; background: #fff; color: #000;
+    border-radius: 26px; font-size: 14px; font-weight: 600;
+    text-decoration: none; white-space: nowrap; flex-shrink: 0;
+    transition: opacity 0.2s;
+  }
+  .cta-tg-btn:hover { opacity: 0.88; }
+  .cta-tg-btn svg { width: 18px; height: 18px; fill: #2AABEE; }
+
+  /* FOOTER */
+  footer {
+    background: #000; padding: 2rem 2.5rem;
+    border-top: 0.5px solid rgba(255,255,255,0.08);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-logo { font-size: 13px; font-weight: 500; letter-spacing: 0.12em; color: rgba(255,255,255,0.4); }
+  .footer-links { display: flex; gap: 1.8rem; }
+  .footer-links a { font-size: 12px; color: rgba(255,255,255,0.3); text-decoration: none; }
+  .footer-links a:hover { color: rgba(255,255,255,0.6); }
+
+  /* ═══════ CONTACT PAGE MOBILE ═══════ */
+  @media (max-width: 768px) {
+    .hero {
+      grid-template-columns: 1fr !important;
+      padding: 2.5rem 1.2rem 2rem !important;
+      gap: 2rem !important;
+    }
+    .hero-title { font-size: 30px !important; line-height: 1.1 !important; }
+    .hero-sub { font-size: 13px !important; margin-bottom: 1.5rem !important; }
+    .tg-btn { padding: 13px 20px !important; font-size: 14px !important; width: 100%; justify-content: center; }
+    .contact-cards { gap: 8px !important; }
+    .ccard { padding: 1rem 1.1rem !important; }
+    .ccard-value { font-size: 13px !important; }
+
+    .locations-section { padding: 2rem 1.2rem !important; }
+    .loc-grid { grid-template-columns: 1fr !important; }
+    .section-title { font-size: 20px !important; }
+    .loc-tg-hint { flex-direction: column !important; gap: 8px !important; font-size: 12px !important; }
+
+    .faq-section { padding: 2rem 1.2rem !important; }
+    .faq-grid { grid-template-columns: 1fr !important; margin-top: 1.2rem !important; }
+    .faq-card { padding: 1rem 1.2rem !important; }
+
+    .cta-strip {
+      flex-direction: column !important;
+      align-items: flex-start !important;
+      padding: 1.8rem 1.2rem !important;
+      gap: 1.2rem !important;
+    }
+    .cta-strip h2 { font-size: 18px !important; }
+    .cta-tg-btn { width: 100%; justify-content: center; box-sizing: border-box; }
+    .reviews-grid { grid-template-columns: 1fr !important; }
+  }
+
+  /* ═══════ UNIVERSAL MOBILE FIX ═══════ */
+  @media (max-width: 768px) {
+    nav, .nav { padding: 0.8rem 1rem; flex-wrap: nowrap; }
+    .nav-logo { font-size: 10px; white-space: nowrap; }
+    .nav-links { display: none !important; }
+    .nav-cta { font-size: 11px; padding: 6px 12px; white-space: nowrap; margin-left: auto; }
+
+    .page-hero { padding: 2.5rem 1.2rem 2rem !important; }
+    .page-title { font-size: 32px !important; }
+    .page-sub { font-size: 13px !important; }
+
+    .section { padding: 2rem 1.2rem !important; }
+    .section-title { font-size: 20px !important; }
+
+    .dance-grid { grid-template-columns: 1fr 1fr !important; }
+    .posture-grid { grid-template-columns: 1fr !important; }
+    .locations-grid { grid-template-columns: 1fr !important; }
+    .pricing-grid { grid-template-columns: 1fr !important; }
+    .price-card { padding: 1.5rem !important; }
+    .price-amount { font-size: 28px !important; }
+
+    .cta-strip { flex-direction: column !important; align-items: flex-start !important; gap: 1rem !important; padding: 1.8rem 1.2rem !important; }
+    .cta-strip h2 { font-size: 18px !important; }
+    .btn-dark, a.btn-dark { width: 100%; text-align: center; box-sizing: border-box; }
+
+    footer { flex-direction: column !important; gap: 1rem !important; padding: 1.5rem 1.2rem !important; text-align: center !important; }
+    .footer-links { gap: 1rem !important; flex-wrap: wrap; justify-content: center; }
+
+    /* generic inline-style grid fixes (photo strips, reviews, video gallery, locations) */
+    div[style*="grid-template-columns:repeat(3"],
+    div[style*="grid-template-columns: repeat(3"] { grid-template-columns: 1fr !important; }
+    div[style*="grid-template-columns:repeat(2"],
+    div[style*="grid-template-columns: repeat(2"] { grid-template-columns: 1fr !important; }
+    div[style*="grid-template-columns:2fr 1fr 1fr"] { grid-template-columns: 1fr 1fr !important; grid-template-rows: 140px 140px 140px !important; }
+    div[style*="grid-template-columns:1fr 1fr 1fr"] { grid-template-columns: 1fr !important; height:auto !important; }
+
+    div[style*="padding:2.5rem 2.5rem"],
+    div[style*="padding:3rem 2.5rem"],
+    div[style*="padding:3.5rem 2.5rem"],
+    div[style*="padding: 3rem 2.5rem"],
+    div[style*="padding: 2.5rem 2.5rem"] { padding: 1.8rem 1.2rem !important; }
+
+    div[style*="height:220px"] img,
+    div[style*="height: 220px"] img,
+    div[style*="height:260px"] img,
+    div[style*="height:420px"] { height: auto !important; min-height: 180px !important; }
+
+    .video-grid { grid-template-columns: 1fr 1fr !important; }
+    .featured-video { aspect-ratio: 16/9 !important; }
+  }
+
+  @media (max-width: 480px) {
+    .video-grid { grid-template-columns: 1fr !important; }
+    .dance-grid { grid-template-columns: 1fr !important; }
+  }
+
+  /* ═══════ MOBILE HAMBURGER MENU ═══════ */
+  .mobile-menu-btn { display: none; background: none; border: none; color: #fff; font-size: 22px; cursor: pointer; padding: 4px 8px; margin-left: 8px; }
+  @media (max-width: 768px) {
+    .mobile-menu-btn { display: inline-block; }
+  }
+  .mobile-nav-panel {
+    display: none; position: fixed; top: 56px; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.97); z-index: 99; padding: 2rem 1.5rem;
+    flex-direction: column; gap: 1.6rem;
+  }
+  .mobile-nav-panel.open { display: flex; }
+  .mobile-nav-panel a {
+    color: #fff; text-decoration: none; font-size: 20px; font-weight: 500;
+    padding-bottom: 14px; border-bottom: 0.5px solid rgba(255,255,255,0.1);
+  }
+
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">RUSLAN ISMAILOV</div>
+  <div class="nav-links">
+    <a href="index.html">Главная</a>
+    <a href="about.html">Обо мне</a>
+    <a href="services.html">Направления</a>
+    <a href="video.html">Видео</a>
+    <a href="#" class="active">Контакты</a>
+  </div>
+  <button class="mobile-menu-btn" onclick="toggleMobileNav()">&#9776;</button>
+  <a href="https://t.me/voliamsir" target="_blank" class="nav-cta">Записаться</a>
+</nav>
+<div class="mobile-nav-panel" id="mobileNavPanel">
+    <a href="index.html">Главная</a>
+    <a href="about.html">Обо мне</a>
+    <a href="services.html">Направления</a>
+    <a href="video.html">Видео</a>
+    <a href="#" class="active">Контакты</a>
+  </div>
+
+<!-- HERO -->
+<div class="hero">
+  <div>
+    <div class="hero-eyebrow">КОНТАКТЫ</div>
+    <div class="hero-title">Напишите<br>мне прямо<br>сейчас.</div>
+    <div class="hero-sub">Самый быстрый способ связаться — Telegram. Отвечаю в течение нескольких часов. Онлайн-консультация — бесплатная.</div>
+    <a href="https://t.me/voliamsir" target="_blank" class="tg-btn">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.26 13.993l-2.969-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.897.566z"/></svg>
+      Написать в Telegram
+    </a>
+    <div class="tg-handle">@voliamsir</div>
+    <div class="response-badge">
+      <div class="response-dot"></div>
+      Обычно отвечаю в течение 2–3 часов
+    </div>
+  </div>
+
+  <div class="contact-cards">
+    <a href="https://t.me/voliamsir" target="_blank" class="ccard">
+      <div class="ccard-icon ccard-ic-tg">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="#2AABEE"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.26 13.993l-2.969-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.897.566z"/></svg>
+      </div>
+      <div>
+        <div class="ccard-label">TELEGRAM</div>
+        <div class="ccard-value">@voliamsir</div>
+      </div>
+      <div class="ccard-arrow">↗</div>
+    </a>
+
+    <div class="ccard" style="cursor:default;">
+      <div class="ccard-icon ccard-ic-phone">📍</div>
+      <div>
+        <div class="ccard-label">ГОРОДА</div>
+        <div class="ccard-value">Москва · Онлайн по всему миру</div>
+      </div>
+    </div>
+
+    <div class="ccard" style="cursor:default;">
+      <div class="ccard-icon" style="background:rgba(232,196,255,0.12);">🕐</div>
+      <div>
+        <div class="ccard-label">ЧАСЫ РАБОТЫ</div>
+        <div class="ccard-value">Пн–Вс · гибкое расписание</div>
+      </div>
+    </div>
+
+    <div class="ccard" style="cursor:default;">
+      <div class="ccard-icon" style="background:rgba(255,200,100,0.1);">🎁</div>
+      <div>
+        <div class="ccard-label">ПЕРВЫЙ ШАГ</div>
+        <div class="ccard-value">Онлайн-консультация — бесплатно</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- LOCATIONS -->
+<div class="locations-section">
+  <div class="section-eyebrow">АДРЕСА СТУДИЙ</div>
+  <div class="section-title">Три точки в Москве</div>
+  <div class="loc-grid">
+    <div class="loc-card">
+      <div class="loc-metro" style="color:#E8C4FF;">
+        <div class="loc-dot" style="background:#E8C4FF;"></div>
+        М. РИЖСКАЯ
+      </div>
+      <div class="loc-address">ул. Международная, 11</div>
+      <div class="loc-sub">Алексеевский район · Москва</div>
+      <div class="loc-walk">🚶 2 минуты от метро</div>
+    </div>
+    <div class="loc-card">
+      <div class="loc-metro" style="color:#1D9E75;">
+        <div class="loc-dot" style="background:#1D9E75;"></div>
+        М. КРАСНЫЕ ВОРОТА
+      </div>
+      <div class="loc-address">ул. Спасский тупик, 6</div>
+      <div class="loc-sub">Красносельский район · Москва</div>
+      <div class="loc-walk">🚶 7–10 минут от метро</div>
+    </div>
+    <div class="loc-card">
+      <div class="loc-metro" style="color:#378ADD;">
+        <div class="loc-dot" style="background:#378ADD;"></div>
+        М. НОВОСЛОБОДСКАЯ
+      </div>
+      <div class="loc-address">Селезнёвская ул., 4</div>
+      <div class="loc-sub">Тимирязевский район · Москва</div>
+      <div class="loc-walk">🚶 2 минуты от метро</div>
+    </div>
+  </div>
+  <div class="loc-tg-hint">
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="#2AABEE"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.26 13.993l-2.969-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.897.566z"/></svg>
+    Напишите в Telegram <strong>@voliamsir</strong>, чтобы уточнить точный адрес студии и согласовать удобное время.
+  </div>
+</div>
+
+<!-- REVIEWS -->
+<div style="padding:3rem 2.5rem; background:#000; border-bottom:0.5px solid rgba(255,255,255,0.08);">
+  <div style="font-size:11px;color:#E8C4FF;letter-spacing:0.14em;font-weight:500;margin-bottom:0.5rem;">ОТЗЫВЫ</div>
+  <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:1.8rem;flex-wrap:wrap;">
+    <div style="font-size:24px;font-weight:500;color:#fff;letter-spacing:-0.01em;">Отзывы с Профи.ру</div>
+    <div style="display:flex;align-items:center;gap:6px;font-size:13px;color:rgba(255,255,255,0.4);">
+      <span style="color:#E8C4FF;">★★★★★</span> 5.0 · 14 отзывов
+    </div>
+  </div>
+  <div class="reviews-grid" style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;">
+
+    <div style="background:#111;border:0.5px solid rgba(255,255,255,0.1);border-radius:16px;padding:1.4rem 1.6rem;">
+      <div style="color:#E8C4FF;font-size:12px;margin-bottom:0.6rem;">★★★★★</div>
+      <div style="font-size:13px;color:rgba(255,255,255,0.55);line-height:1.65;">«Все очень круто, Руслан отличный специалист с хорошим вайбом и открытостью!»</div>
+      <div style="margin-top:0.9rem;font-size:12px;font-weight:500;color:#fff;">Дмитрий <span style="color:rgba(255,255,255,0.3);font-weight:400;">· июнь 2026</span></div>
+    </div>
+
+    <div style="background:#111;border:0.5px solid rgba(255,255,255,0.1);border-radius:16px;padding:1.4rem 1.6rem;">
+      <div style="color:#E8C4FF;font-size:12px;margin-bottom:0.6rem;">★★★★★</div>
+      <div style="font-size:13px;color:rgba(255,255,255,0.55);line-height:1.65;">«Очень понравились занятия! Нужно было выучить бродвейский джаз за несколько дней — Руслан придумал хореографию и разобрал всё за 3 дня. Прошло классно и профессионально!»</div>
+      <div style="margin-top:0.9rem;font-size:12px;font-weight:500;color:#fff;">Николь <span style="color:rgba(255,255,255,0.3);font-weight:400;">· июль 2025</span></div>
+    </div>
+
+    <div style="background:#111;border:0.5px solid rgba(255,255,255,0.1);border-radius:16px;padding:1.4rem 1.6rem;">
+      <div style="color:#E8C4FF;font-size:12px;margin-bottom:0.6rem;">★★★★★</div>
+      <div style="font-size:13px;color:rgba(255,255,255,0.55);line-height:1.65;">«Заниматься с Русланом — одно удовольствие, очень приятный и тактичный хореограф. Я уверена, что у нас всё получится.»</div>
+      <div style="margin-top:0.9rem;font-size:12px;font-weight:500;color:#fff;">Molokanovass <span style="color:rgba(255,255,255,0.3);font-weight:400;">· сентябрь 2023</span></div>
+    </div>
+
+    <div style="background:#111;border:0.5px solid rgba(255,255,255,0.1);border-radius:16px;padding:1.4rem 1.6rem;">
+      <div style="color:#E8C4FF;font-size:12px;margin-bottom:0.6rem;">★★★★★</div>
+      <div style="font-size:13px;color:rgba(255,255,255,0.55);line-height:1.65;">«Мега профессионал с обалденным характером. Легок на подъём, приходит вовремя, мастер-класс девчонкам зашёл — все в восторге!»</div>
+      <div style="margin-top:0.9rem;font-size:12px;font-weight:500;color:#fff;">Катерина <span style="color:rgba(255,255,255,0.3);font-weight:400;">· декабрь 2022</span></div>
+    </div>
+
+  </div>
+  <div style="text-align:center;margin-top:1.6rem;">
+    <a href="https://profi.ru/profile/IsmagilovRE" target="_blank" style="display:inline-flex;align-items:center;gap:8px;font-size:13px;color:#fff;text-decoration:none;background:rgba(255,255,255,0.08);border:0.5px solid rgba(255,255,255,0.15);padding:10px 20px;border-radius:20px;">Все 14 отзывов на Профи.ру ↗</a>
+  </div>
+</div>
+
+<!-- FAQ -->
+<div class="faq-section">
+  <div class="section-eyebrow">ВОПРОСЫ</div>
+  <div class="section-title">Часто спрашивают</div>
+  <div class="faq-grid">
+    <div class="faq-card">
+      <div class="faq-q">Как записаться на занятие?</div>
+      <div class="faq-a">Напишите мне в Telegram <strong style="color:#2AABEE;">@voliamsir</strong> — обсудим цели, выберем направление и согласуем удобное время.</div>
+    </div>
+    <div class="faq-card">
+      <div class="faq-q">Что такое бесплатная консультация?</div>
+      <div class="faq-a">Это онлайн-созвон для знакомства: разберём ваши цели и подберём программу. Это не пробный урок — все занятия платные (от 3 300 ₽ при покупке блока).</div>
+    </div>
+    <div class="faq-card">
+      <div class="faq-q">Занятия подходят для начинающих?</div>
+      <div class="faq-a">Да, работаю с любым уровнем подготовки — от абсолютных новичков до тех, кто хочет углубить технику.</div>
+    </div>
+    <div class="faq-card">
+      <div class="faq-q">Есть ли занятия онлайн?</div>
+      <div class="faq-a">Да. Онлайн-формат доступен для всех направлений. Работаю с учениками по всей России и из-за рубежа.</div>
+    </div>
+    <div class="faq-card">
+      <div class="faq-q">Сколько длится один урок?</div>
+      <div class="faq-a">Стандартный урок — 60 минут. По запросу возможны занятия длительностью 45 или 90 минут.</div>
+    </div>
+    <div class="faq-card">
+      <div class="faq-q">Можно ли купить блок и заниматься по разным направлениям?</div>
+      <div class="faq-a">Да, блок из 10 уроков можно распределить по любым направлениям — танец, осанка, шоу-постановка.</div>
+    </div>
+    <div class="faq-card">
+      <div class="faq-q">Сгорают ли уроки из блока?</div>
+      <div class="faq-a">Нет. Купленные уроки не имеют срока действия — занимайтесь в удобном для вас темпе.</div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA STRIP -->
+<div class="cta-strip">
+  <div>
+    <h2>Готовы начать?</h2>
+    <p>Бесплатная онлайн-консультация — напишите прямо сейчас</p>
+  </div>
+  <a href="https://t.me/voliamsir" target="_blank" class="cta-tg-btn">
+    <svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.26 13.993l-2.969-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.897.566z"/></svg>
+    Написать @voliamsir
+  </a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">RUSLAN ISMAILOV</div>
+  <div class="footer-links">
+    <a href="https://t.me/voliamsir" target="_blank">Telegram</a>
+    <a href="index.html">Главная</a>
+    <a href="about.html">Обо мне</a>
+    <a href="services.html">Направления</a>
+  </div>
+</footer>
+
+
+<script>
+function toggleMobileNav(){
+  var m = document.getElementById('mobileNavPanel');
+  if(m) m.classList.toggle('open');
+}
+</script>
+</body>
+</html>

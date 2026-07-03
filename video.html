@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Видео — Руслан Исмаилов</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, 'SF Pro Display', Helvetica, Arial, sans-serif; background: #000; color: #fff; }
+
+  nav {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1rem 2.5rem;
+    background: rgba(0,0,0,0.92);
+    border-bottom: 0.5px solid rgba(255,255,255,0.1);
+    position: sticky; top: 0; z-index: 100;
+    backdrop-filter: blur(12px);
+  }
+  .nav-logo { font-size: 13px; font-weight: 500; letter-spacing: 0.14em; }
+  .nav-links { display: flex; gap: 2rem; }
+  .nav-links a { font-size: 12px; color: rgba(255,255,255,0.5); text-decoration: none; letter-spacing: 0.03em; }
+  .nav-links a:hover { color: #fff; }
+  .nav-links .active { color: #fff; border-bottom: 0.5px solid rgba(255,255,255,0.4); padding-bottom: 1px; }
+  .nav-cta { font-size: 12px; font-weight: 500; padding: 7px 20px; background: #fff; color: #000; border-radius: 20px; cursor: pointer; text-decoration: none; display: inline-block; }
+
+  .page-hero { padding: 4rem 2.5rem 3rem; border-bottom: 0.5px solid rgba(255,255,255,0.08); }
+  .eyebrow { font-size: 11px; color: rgba(255,255,255,0.35); letter-spacing: 0.16em; font-weight: 500; margin-bottom: 1rem; }
+  .page-title { font-size: 44px; font-weight: 500; letter-spacing: -0.025em; line-height: 1.05; color: #fff; margin-bottom: 1rem; }
+  .page-sub { font-size: 15px; color: rgba(255,255,255,0.45); max-width: 500px; line-height: 1.7; }
+
+  /* FEATURED */
+  .featured-section { padding: 3rem 2.5rem; border-bottom: 0.5px solid rgba(255,255,255,0.08); background: #000; }
+  .section-label { font-size: 11px; color: #E8C4FF; letter-spacing: 0.14em; font-weight: 500; margin-bottom: 0.5rem; }
+  .section-title { font-size: 22px; font-weight: 500; color: #fff; letter-spacing: -0.01em; margin-bottom: 1.4rem; }
+
+  .featured-wrap {
+    position: relative; width: 100%; aspect-ratio: 16/9;
+    background: #0d0d0d; border-radius: 20px; overflow: hidden;
+    border: 0.5px solid rgba(255,255,255,0.1);
+  }
+  .featured-wrap iframe {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;
+  }
+  .featured-meta { margin-top: 1.2rem; }
+  .featured-title { font-size: 18px; font-weight: 500; color: #fff; margin-bottom: 5px; line-height: 1.3; }
+  .featured-desc { font-size: 13px; color: rgba(255,255,255,0.4); line-height: 1.6; max-width: 600px; }
+
+  /* TRIO */
+  .trio-section { padding: 3rem 2.5rem; border-bottom: 0.5px solid rgba(255,255,255,0.08); background: #080808; }
+  .trio-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+
+  .vcard { background: #111; border: 0.5px solid rgba(255,255,255,0.1); border-radius: 18px; overflow: hidden; }
+  .vcard-video { position: relative; width: 100%; aspect-ratio: 9/16; background: #0a0a0a; }
+  .vcard-video iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+  .vcard-meta { padding: 1rem 1.2rem 1.2rem; }
+  .vcard-num { font-size: 10px; color: rgba(255,255,255,0.25); letter-spacing: 0.1em; margin-bottom: 5px; }
+  .vcard-title { font-size: 14px; font-weight: 500; color: #fff; margin-bottom: 4px; line-height: 1.35; }
+  .vcard-desc { font-size: 12px; color: rgba(255,255,255,0.38); line-height: 1.6; }
+
+  /* CTA */
+  .cta-strip { background: #E8C4FF; padding: 2.5rem 2.5rem; display: flex; justify-content: space-between; align-items: center; gap: 2rem; }
+  .cta-strip h2 { font-size: 20px; font-weight: 500; color: #1a0030; }
+  .cta-strip p { font-size: 13px; color: rgba(26,0,48,0.55); margin-top: 4px; }
+  .btn-dark { padding: 13px 28px; background: #1a0030; color: #fff; border-radius: 24px; font-size: 14px; font-weight: 500; text-decoration: none; display: inline-block; white-space: nowrap; }
+
+  footer { background: #000; padding: 2rem 2.5rem; border-top: 0.5px solid rgba(255,255,255,0.08); display: flex; justify-content: space-between; align-items: center; }
+  .footer-logo { font-size: 13px; font-weight: 500; letter-spacing: 0.12em; color: rgba(255,255,255,0.4); }
+  .footer-links { display: flex; gap: 1.8rem; }
+  .footer-links a { font-size: 12px; color: rgba(255,255,255,0.3); text-decoration: none; }
+
+  /* HAMBURGER */
+  .mobile-menu-btn { display: none; background: none; border: none; color: #fff; font-size: 22px; cursor: pointer; padding: 4px 8px; margin-left: 8px; }
+  .mobile-nav-panel { display: none; position: fixed; top: 56px; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.97); z-index: 99; padding: 2rem 1.5rem; flex-direction: column; gap: 1.6rem; }
+  .mobile-nav-panel.open { display: flex; }
+  .mobile-nav-panel a { color: #fff; text-decoration: none; font-size: 20px; font-weight: 500; padding-bottom: 14px; border-bottom: 0.5px solid rgba(255,255,255,0.1); }
+
+  /* MOBILE */
+  @media (max-width: 768px) {
+    nav { padding: 0.8rem 1rem; }
+    .nav-links { display: none !important; }
+    .nav-logo { font-size: 10px; }
+    .nav-cta { font-size: 11px; padding: 6px 12px; }
+    .mobile-menu-btn { display: inline-block; }
+
+    .page-hero { padding: 2.5rem 1.2rem 2rem; }
+    .page-title { font-size: 30px; }
+    .page-sub { font-size: 13px; }
+
+    .featured-section { padding: 2rem 1.2rem; }
+    .featured-title { font-size: 15px; }
+    .featured-desc { font-size: 12px; }
+
+    .trio-section { padding: 2rem 1.2rem; }
+    .trio-grid { grid-template-columns: 1fr; gap: 14px; }
+
+    .cta-strip { flex-direction: column; align-items: flex-start; padding: 1.8rem 1.2rem; gap: 1rem; }
+    .cta-strip h2 { font-size: 18px; }
+    .btn-dark { width: 100%; text-align: center; box-sizing: border-box; }
+
+    footer { flex-direction: column; gap: 1rem; padding: 1.5rem 1.2rem; text-align: center; }
+    .footer-links { gap: 1rem; flex-wrap: wrap; justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">RUSLAN ISMAILOV</div>
+  <div class="nav-links">
+    <a href="index.html">Главная</a>
+    <a href="about.html">Обо мне</a>
+    <a href="services.html">Направления</a>
+    <a href="#" class="active">Видео</a>
+    <a href="contact.html">Контакты</a>
+  </div>
+  <button class="mobile-menu-btn" onclick="toggleMobileNav()">&#9776;</button>
+  <a href="https://t.me/voliamsir" target="_blank" class="nav-cta">Записаться</a>
+</nav>
+
+<div class="mobile-nav-panel" id="mobileNavPanel">
+  <a href="index.html">Главная</a>
+  <a href="about.html">Обо мне</a>
+  <a href="services.html">Направления</a>
+  <a href="#" class="active">Видео</a>
+  <a href="contact.html">Контакты</a>
+</div>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="eyebrow">ВИДЕОГАЛЕРЕЯ</div>
+  <div class="page-title">Смотрите<br>движение<br>в действии.</div>
+  <div class="page-sub">Промо-нарезка, выступления учеников и дуэт с педагогом — живое доказательство результата.</div>
+</div>
+
+<!-- FEATURED: ПРОМО -->
+<div class="featured-section">
+  <div class="section-label">ГЛАВНОЕ ВИДЕО</div>
+  <div class="section-title">Движение — это язык. Мы говорим на нём.</div>
+
+  <div class="featured-wrap">
+    <iframe src="https://rutube.ru/play/embed/ad0d859935fe6478e5bc4ede35acad5e/?p=aoNQNxyJ76hU-Ip24UYaTw"
+      allow="clipboard-write; autoplay; fullscreen" allowfullscreen></iframe>
+  </div>
+
+  <div class="featured-meta">
+    <div class="featured-title">Движение — это язык. Мы говорим на нём.</div>
+    <div class="featured-desc">Лучшие моменты из жизни студии — сцена, репетиции, эмоции. Всё, что происходит за кулисами и на свету.</div>
+  </div>
+</div>
+
+<!-- TRIO -->
+<div class="trio-section">
+  <div class="section-label">ВЫСТУПЛЕНИЯ УЧЕНИКОВ</div>
+  <div class="section-title">Видео с занятий и конкурсов</div>
+
+  <div class="trio-grid">
+
+    <!-- ВИДЕО 2: нарезка детей -->
+    <div class="vcard">
+      <div class="vcard-video">
+        <iframe src="https://rutube.ru/play/embed/87375d5cbb34beda9cc7597a4b26e557/?p=41n4jbxj0l8H45o4gK6dYg"
+          allow="clipboard-write; autoplay; fullscreen" allowfullscreen></iframe>
+      </div>
+      <div class="vcard-meta">
+        <div class="vcard-num">01</div>
+        <div class="vcard-title">Танец. Эмоции. Драйв.</div>
+        <div class="vcard-desc">Всё, что происходит, когда дети по-настоящему чувствуют музыку и движение.</div>
+      </div>
+    </div>
+
+    <!-- ВИДЕО 3: конкурсный танец -->
+    <div class="vcard">
+      <div class="vcard-video">
+        <iframe src="https://rutube.ru/play/embed/acc5c49150b493ad02e12c903d5321e1/?p=6UvsKo8_1o3iBsZA23kLfg"
+          allow="clipboard-write; autoplay; fullscreen" allowfullscreen></iframe>
+      </div>
+      <div class="vcard-meta">
+        <div class="vcard-num">02</div>
+        <div class="vcard-title">Хореография, которую оценивает жюри</div>
+        <div class="vcard-desc">Полная запись конкурсного выступления. Техника, синхронность, характер — всё на месте.</div>
+      </div>
+    </div>
+
+    <!-- ВИДЕО 4: дуэт с Русланом -->
+    <div class="vcard">
+      <div class="vcard-video">
+        <iframe src="https://rutube.ru/play/embed/e6cdd4bc8bfa9aa40eda4dfefb4f8648/?p=5-Lu44fh_4LQ_sZwpVQvZw"
+          allow="clipboard-write; autoplay; fullscreen" allowfullscreen></iframe>
+      </div>
+      <div class="vcard-meta">
+        <div class="vcard-num">03</div>
+        <div class="vcard-title">Когда педагог танцует рядом</div>
+        <div class="vcard-desc">Дуэт Руслана Исмаилова с учеником — когда слова заменяет движение.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-strip">
+  <div>
+    <h2>Хотите так же?</h2>
+    <p>Бесплатная онлайн-консультация перед стартом</p>
+  </div>
+  <a href="https://t.me/voliamsir" target="_blank" class="btn-dark">Записаться →</a>
+</div>
+
+<footer>
+  <div class="footer-logo">RUSLAN ISMAILOV</div>
+  <div class="footer-links">
+    <a href="https://t.me/voliamsir" target="_blank">Telegram</a>
+    <a href="index.html">Главная</a>
+    <a href="services.html">Направления</a>
+    <a href="contact.html">Контакты</a>
+  </div>
+</footer>
+
+<script>
+function toggleMobileNav(){
+  var m = document.getElementById('mobileNavPanel');
+  if(m) m.classList.toggle('open');
+}
+</script>
+</body>
+</html>
