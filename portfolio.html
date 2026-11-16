@@ -1,0 +1,542 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Руслан Исмаилов — Хореограф, Педагог, Режиссёр — Портфолио</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, 'SF Pro Display', Helvetica, Arial, sans-serif; background: #000; color: #fff; }
+
+  /* NAV */
+  nav {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1rem 2.5rem;
+    background: rgba(0,0,0,0.9);
+    border-bottom: 0.5px solid rgba(255,255,255,0.1);
+    position: sticky; top: 0; z-index: 100;
+    backdrop-filter: blur(12px);
+  }
+  .nav-logo { font-size: 13px; font-weight: 500; letter-spacing: 0.14em; }
+  .nav-links { display: flex; gap: 2rem; }
+  .nav-links a { font-size: 12px; color: rgba(255,255,255,0.5); text-decoration: none; letter-spacing: 0.03em; transition: color 0.2s; }
+  .nav-links a:hover { color: #fff; }
+  .nav-cta { font-size: 12px; font-weight: 500; padding: 7px 20px; background: #fff; color: #000; border-radius: 20px; cursor: pointer; border: none; transition: opacity 0.2s; }
+  .nav-cta:hover { opacity: 0.85; }
+
+  /* HERO */
+  .hero {
+    display: grid; grid-template-columns: 1fr 1fr;
+    min-height: 92vh;
+    border-bottom: 0.5px solid rgba(255,255,255,0.08);
+  }
+  .hero-left {
+    padding: 5rem 2.5rem 4rem;
+    display: flex; flex-direction: column; justify-content: center;
+    background: #000;
+  }
+  .hero-eyebrow { font-size: 11px; color: rgba(255,255,255,0.35); letter-spacing: 0.16em; font-weight: 500; margin-bottom: 1.4rem; }
+  .hero-name { font-size: 54px; font-weight: 500; letter-spacing: -0.025em; line-height: 1.05; color: #fff; margin-bottom: 1rem; }
+  .hero-role { font-size: 16px; color: #E8C4FF; font-weight: 400; letter-spacing: 0.01em; margin-bottom: 1.8rem; line-height: 1.5; }
+  .hero-desc { font-size: 14px; color: rgba(255,255,255,0.45); line-height: 1.8; max-width: 400px; margin-bottom: 2.5rem; }
+  .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn-white { padding: 13px 28px; background: #fff; color: #000; border-radius: 24px; font-size: 14px; font-weight: 500; border: none; cursor: pointer; transition: opacity 0.2s; }
+  .btn-white:hover { opacity: 0.88; }
+  .btn-ghost { padding: 13px 28px; background: rgba(255,255,255,0.07); color: #fff; border-radius: 24px; font-size: 14px; font-weight: 400; border: 0.5px solid rgba(255,255,255,0.18); cursor: pointer; transition: background 0.2s; }
+  .btn-ghost:hover { background: rgba(255,255,255,0.12); }
+
+  .hero-right {
+    position: relative; overflow: hidden;
+    background: #0d0d0d;
+    display: flex; align-items: flex-end; justify-content: center;
+  }
+  /* Placeholder — замените src на ваше фото */
+  .hero-photo {
+    width: 100%; height: 100%; object-fit: cover; object-position: center top;
+    display: block;
+    filter: grayscale(15%) contrast(1.05);
+  }
+  .hero-photo-placeholder {
+    width: 100%; height: 100%;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 16px;
+    color: rgba(255,255,255,0.2);
+    font-size: 13px; letter-spacing: 0.06em;
+  }
+  .photo-icon { font-size: 56px; opacity: 0.3; }
+  .hero-overlay {
+    position: absolute; bottom: 0; left: 0; right: 0; height: 180px;
+    background: linear-gradient(to top, #000 0%, transparent 100%);
+    pointer-events: none;
+  }
+  .hero-badge {
+    position: absolute; top: 2rem; right: 2rem;
+    background: rgba(0,0,0,0.7); border: 0.5px solid rgba(255,255,255,0.15);
+    border-radius: 14px; padding: 10px 16px;
+    backdrop-filter: blur(10px);
+  }
+  .hero-badge-title { font-size: 13px; font-weight: 500; color: #fff; }
+  .hero-badge-sub { font-size: 11px; color: rgba(255,255,255,0.4); margin-top: 3px; }
+
+  /* METRICS */
+  .metrics {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    background: #080808;
+    border-bottom: 0.5px solid rgba(255,255,255,0.08);
+  }
+  .mcard { padding: 2rem 1.5rem; text-align: center; border-right: 0.5px solid rgba(255,255,255,0.08); }
+  .mcard:last-child { border-right: none; }
+  .mnum { font-size: 34px; font-weight: 500; letter-spacing: -0.02em; color: #fff; line-height: 1; }
+  .munit { font-size: 16px; color: #E8C4FF; }
+  .mlabel { font-size: 11px; color: rgba(255,255,255,0.35); margin-top: 8px; letter-spacing: 0.06em; line-height: 1.4; }
+
+  /* QUOTE */
+  .quote-block {
+    padding: 4rem 2.5rem; text-align: center;
+    background: #000;
+    border-bottom: 0.5px solid rgba(255,255,255,0.08);
+  }
+  .quote-mark { font-size: 60px; color: #E8C4FF; line-height: 0.4; margin-bottom: 1.8rem; font-family: Georgia, serif; }
+  .quote-text { font-size: 22px; font-weight: 400; color: rgba(255,255,255,0.88); line-height: 1.5; max-width: 600px; margin: 0 auto; letter-spacing: -0.01em; }
+  .quote-author { font-size: 11px; color: rgba(255,255,255,0.28); margin-top: 1.5rem; letter-spacing: 0.14em; }
+
+  /* SERVICES */
+  .services { background: #080808; padding: 3.5rem 2.5rem; border-bottom: 0.5px solid rgba(255,255,255,0.08); }
+  .section-eyebrow { font-size: 11px; color: #E8C4FF; letter-spacing: 0.14em; font-weight: 500; margin-bottom: 0.5rem; }
+  .section-title { font-size: 26px; font-weight: 500; color: #fff; letter-spacing: -0.01em; margin-bottom: 1.8rem; }
+  .cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .scard {
+    background: #111; border: 0.5px solid rgba(255,255,255,0.1);
+    border-radius: 20px; padding: 1.8rem;
+    transition: background 0.2s, border-color 0.2s;
+    cursor: default;
+  }
+  .scard:hover { background: #181818; border-color: rgba(255,255,255,0.2); }
+  .scard-num { font-size: 11px; color: rgba(255,255,255,0.25); letter-spacing: 0.1em; margin-bottom: 1.2rem; }
+  .scard h3 { font-size: 16px; font-weight: 500; color: #fff; margin-bottom: 0.7rem; }
+  .scard p { font-size: 13px; color: rgba(255,255,255,0.42); line-height: 1.7; }
+  .scard-accent { display: inline-block; margin-top: 1rem; font-size: 11px; color: #E8C4FF; letter-spacing: 0.04em; }
+
+  /* PRODUCTIONS */
+  .productions { background: #000; padding: 3.5rem 2.5rem; border-bottom: 0.5px solid rgba(255,255,255,0.08); }
+  .prod-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .prod-card {
+    background: #111; border: 0.5px solid rgba(255,255,255,0.1);
+    border-radius: 20px; padding: 2rem;
+    position: relative; overflow: hidden;
+  }
+  .prod-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, #E8C4FF, #1D9E75);
+  }
+  .prod-tag { font-size: 10px; color: #1D9E75; letter-spacing: 0.12em; font-weight: 500; margin-bottom: 0.8rem; }
+  .prod-title { font-size: 18px; font-weight: 500; color: #fff; margin-bottom: 0.6rem; line-height: 1.3; }
+  .prod-desc { font-size: 13px; color: rgba(255,255,255,0.4); line-height: 1.7; }
+
+  /* ACHIEVEMENTS */
+  .achievements { background: #080808; padding: 3.5rem 2.5rem; border-bottom: 0.5px solid rgba(255,255,255,0.08); }
+  .ach-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 1.8rem; }
+  .ach-item {
+    background: #111; border: 0.5px solid rgba(255,255,255,0.08);
+    border-radius: 16px; padding: 1.2rem 1.4rem;
+    display: flex; gap: 12px; align-items: flex-start;
+  }
+  .ach-dot { width: 6px; height: 6px; border-radius: 50%; background: #E8C4FF; flex-shrink: 0; margin-top: 6px; }
+  .ach-text-wrap {}
+  .ach-title-sm { font-size: 13px; font-weight: 500; color: #fff; line-height: 1.4; }
+  .ach-sub-sm { font-size: 11px; color: rgba(255,255,255,0.35); margin-top: 3px; line-height: 1.5; }
+
+  /* CTA */
+  .cta-strip {
+    background: #E8C4FF; padding: 3rem 2.5rem;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .cta-left h2 { font-size: 24px; font-weight: 500; color: #1a0030; letter-spacing: -0.01em; }
+  .cta-left p { font-size: 14px; color: rgba(26,0,48,0.55); margin-top: 5px; }
+  .btn-dark { padding: 14px 32px; background: #1a0030; color: #fff; border-radius: 26px; font-size: 14px; font-weight: 500; border: none; cursor: pointer; transition: background 0.2s; }
+  .btn-dark:hover { background: #2e0055; }
+
+  /* FOOTER */
+  footer {
+    background: #000; padding: 2rem 2.5rem;
+    border-top: 0.5px solid rgba(255,255,255,0.08);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-logo { font-size: 13px; font-weight: 500; letter-spacing: 0.12em; color: rgba(255,255,255,0.4); }
+  .footer-links { display: flex; gap: 1.8rem; }
+  .footer-links a { font-size: 12px; color: rgba(255,255,255,0.3); text-decoration: none; letter-spacing: 0.03em; }
+
+  /* ═══════ MOBILE RESPONSIVE ═══════ */
+  @media (max-width: 768px) {
+    nav { padding: 0.8rem 1.2rem; }
+    .nav-links { display: none; }
+    .nav-logo { font-size: 11px; }
+    .nav-cta { font-size: 11px; padding: 6px 14px; }
+
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-left { padding: 2.5rem 1.2rem 2rem; order: 2; }
+    .hero-right { order: 1; height: 50vh; min-height: 320px; }
+    .hero-name { font-size: 34px; }
+    .hero-role { font-size: 14px; }
+    .hero-desc { font-size: 13px; max-width: 100%; }
+    .hero-btns { flex-direction: column; }
+    .hero-btns a, .hero-btns button { width: 100%; text-align: center; }
+    .hero-badge { top: 1rem; right: 1rem; padding: 8px 12px; }
+
+    .metrics { grid-template-columns: repeat(2, 1fr); }
+    .mcard { padding: 1.2rem 0.8rem; }
+    .mcard:nth-child(2) { border-right: none; }
+    .mnum { font-size: 26px; }
+
+    .quote-block { padding: 2.5rem 1.2rem; }
+    .quote-mark { font-size: 42px; }
+    .quote-text { font-size: 17px; }
+
+    .services, .productions, .achievements { padding: 2.5rem 1.2rem; }
+    .section-title { font-size: 21px; }
+    .cards-grid { grid-template-columns: 1fr; }
+    .prod-grid { grid-template-columns: 1fr; }
+    .ach-list { grid-template-columns: 1fr; }
+
+    .cta-strip { flex-direction: column; align-items: flex-start; gap: 1.2rem; padding: 2rem 1.2rem; }
+    .cta-strip .btn-dark, .cta-strip a.btn-dark { width: 100%; text-align: center; }
+    .cta-left h2 { font-size: 19px; }
+
+    footer { flex-direction: column; gap: 1rem; padding: 1.5rem 1.2rem; text-align: center; }
+    .footer-links { gap: 1.2rem; flex-wrap: wrap; justify-content: center; }
+
+    .photo-strip-section { padding: 2rem 1.2rem !important; }
+    .photo-strip-grid {
+      grid-template-columns: 1fr 1fr !important;
+      grid-template-rows: 140px 140px 140px !important;
+    }
+    .photo-strip-grid > div:first-child { grid-row: 1/2 !important; grid-column: 1/3 !important; }
+    .photo-strip-grid > div:first-child img { height: 140px !important; }
+    .photo-strip-grid > div:nth-child(n+2) img { height: 140px !important; }
+
+    .reviews-grid { grid-template-columns: 1fr !important; }
+  }
+
+
+  /* ═══════ UNIVERSAL MOBILE FIX ═══════ */
+  @media (max-width: 768px) {
+    nav, .nav { padding: 0.8rem 1rem; flex-wrap: nowrap; }
+    .nav-logo { font-size: 10px; white-space: nowrap; }
+    .nav-links { display: none !important; }
+    .nav-cta { font-size: 11px; padding: 6px 12px; white-space: nowrap; margin-left: auto; }
+
+    .page-hero { padding: 2.5rem 1.2rem 2rem !important; }
+    .page-title { font-size: 32px !important; }
+    .page-sub { font-size: 13px !important; }
+
+    .section { padding: 2rem 1.2rem !important; }
+    .section-title { font-size: 20px !important; }
+
+    .dance-grid { grid-template-columns: 1fr 1fr !important; }
+    .posture-grid { grid-template-columns: 1fr !important; }
+    .locations-grid { grid-template-columns: 1fr !important; }
+    .pricing-grid { grid-template-columns: 1fr !important; }
+    .price-card { padding: 1.5rem !important; }
+    .price-amount { font-size: 28px !important; }
+
+    .cta-strip { flex-direction: column !important; align-items: flex-start !important; gap: 1rem !important; padding: 1.8rem 1.2rem !important; }
+    .cta-strip h2 { font-size: 18px !important; }
+    .btn-dark, a.btn-dark { width: 100%; text-align: center; box-sizing: border-box; }
+
+    footer { flex-direction: column !important; gap: 1rem !important; padding: 1.5rem 1.2rem !important; text-align: center !important; }
+    .footer-links { gap: 1rem !important; flex-wrap: wrap; justify-content: center; }
+
+    /* generic inline-style grid fixes (photo strips, reviews, video gallery, locations) */
+    div[style*="grid-template-columns:repeat(3"],
+    div[style*="grid-template-columns: repeat(3"] { grid-template-columns: 1fr !important; }
+    div[style*="grid-template-columns:repeat(2"],
+    div[style*="grid-template-columns: repeat(2"] { grid-template-columns: 1fr !important; }
+    div[style*="grid-template-columns:2fr 1fr 1fr"] { grid-template-columns: 1fr 1fr !important; grid-template-rows: 140px 140px 140px !important; }
+    div[style*="grid-template-columns:1fr 1fr 1fr"] { grid-template-columns: 1fr !important; height:auto !important; }
+
+    div[style*="padding:2.5rem 2.5rem"],
+    div[style*="padding:3rem 2.5rem"],
+    div[style*="padding:3.5rem 2.5rem"],
+    div[style*="padding: 3rem 2.5rem"],
+    div[style*="padding: 2.5rem 2.5rem"] { padding: 1.8rem 1.2rem !important; }
+
+    div[style*="height:220px"] img,
+    div[style*="height: 220px"] img,
+    div[style*="height:260px"] img,
+    div[style*="height:420px"] { height: auto !important; min-height: 180px !important; }
+
+    .video-grid { grid-template-columns: 1fr 1fr !important; }
+    .featured-video { aspect-ratio: 16/9 !important; }
+  }
+
+  @media (max-width: 480px) {
+    .video-grid { grid-template-columns: 1fr !important; }
+    .dance-grid { grid-template-columns: 1fr !important; }
+  }
+
+  /* ═══════ MOBILE HAMBURGER MENU ═══════ */
+  .mobile-menu-btn { display: none; background: none; border: none; color: #fff; font-size: 22px; cursor: pointer; padding: 4px 8px; margin-left: 8px; }
+  @media (max-width: 768px) {
+    .mobile-menu-btn { display: inline-block; }
+  }
+  .mobile-nav-panel {
+    display: none; position: fixed; top: 56px; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.97); z-index: 99; padding: 2rem 1.5rem;
+    flex-direction: column; gap: 1.6rem;
+  }
+  .mobile-nav-panel.open { display: flex; }
+  .mobile-nav-panel a {
+    color: #fff; text-decoration: none; font-size: 20px; font-weight: 500;
+    padding-bottom: 14px; border-bottom: 0.5px solid rgba(255,255,255,0.1);
+  }
+
+</style>
+<style>.portfolio-placeholder{min-height:220px;background:linear-gradient(141deg,#343536,#111214)}</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">RUSLAN ISMAILOV</div>
+  <div class="nav-links">
+    <a href="index.html">Главная</a>
+    <a href="about.html">Обо мне</a>
+    <a href="services.html">Направления</a>
+    <a href="video.html">Видео</a>
+    <a href="contact.html">Контакты</a>
+  </div>
+  <button class="mobile-menu-btn" onclick="toggleMobileNav()">&#9776;</button>
+  <a href="https://t.me/voliamsir" target="_blank" class="nav-cta" style="text-decoration:none;">Записаться</a>
+</nav>
+<div class="mobile-nav-panel" id="mobileNavPanel">
+    <a href="index.html">Главная</a>
+    <a href="about.html">Обо мне</a>
+    <a href="services.html">Направления</a>
+    <a href="video.html">Видео</a>
+    <a href="contact.html">Контакты</a>
+  </div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">ХОРЕОГРАФ · ПЕДАГОГ · РЕЖИССЁР</div>
+    <div class="hero-name">Руслан<br>Исмаилов</div>
+    <div class="hero-role">Движение — это язык.<br>Я помогаю вам говорить на нём свободно.</div>
+    <div class="hero-desc">20 лет на сцене. 15 лет в педагогике. Постановки, танец, осанка и биомеханика тела — всё в одном человеке.</div>
+    <div class="hero-btns">
+      <button class="btn-white" onclick="document.querySelector('.services').scrollIntoView({behavior:'smooth'})">Узнать больше</button>
+      <a href="https://t.me/voliamsir" target="_blank" class="btn-ghost" onclick="document.querySelector('.cta-strip').scrollIntoView({behavior:'smooth'})" style="text-decoration:none; display:inline-block;">Записаться на занятие</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="media-placeholder portfolio-placeholder" aria-hidden="true"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-badge">
+      <div class="hero-badge-title">Финалист Чемпионата Европы</div>
+      <div class="hero-badge-sub">Кубок России · Сборная ОРТО</div>
+    </div>
+  </div>
+</div>
+
+<!-- METRICS -->
+<div class="metrics">
+  <div class="mcard">
+    <div class="mnum">20<span class="munit">+</span></div>
+    <div class="mlabel">ЛЕТ НА<br>СЦЕНЕ</div>
+  </div>
+  <div class="mcard">
+    <div class="mnum">15<span class="munit">+</span></div>
+    <div class="mlabel">ЛЕТ В<br>ПЕДАГОГИКЕ</div>
+  </div>
+  <div class="mcard">
+    <div class="mnum">2</div>
+    <div class="mlabel">ТАНЦЕВАЛЬНЫХ<br>СПЕКТАКЛЯ</div>
+  </div>
+  <div class="mcard">
+    <div class="mnum" style="font-size:26px; padding-top:4px;">🏆🌍</div>
+    <div class="mlabel">КУБОК РОСИИ<br>ФИНАЛ ЕВРОПЫ</div>
+  </div>
+</div>
+
+
+<!-- PHOTO STRIP -->
+<div class="photo-strip-section" style="padding:2.5rem 2.5rem; background:#000; border-bottom:0.5px solid rgba(255,255,255,0.08);">
+  <div style="font-size:11px;color:rgba(255,255,255,0.35);letter-spacing:0.14em;font-weight:500;margin-bottom:1.2rem;">ПОРТФОЛИО</div>
+  <div class="photo-strip-grid" style="display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:220px 220px;gap:8px;border-radius:18px;overflow:hidden;">
+    <div style="grid-row:1/3;overflow:hidden;"><div class="media-placeholder portfolio-placeholder" aria-hidden="true"></div></div>
+    <div style="overflow:hidden;"><div class="media-placeholder portfolio-placeholder" aria-hidden="true"></div></div>
+    <div style="overflow:hidden;"><div class="media-placeholder portfolio-placeholder" aria-hidden="true"></div></div>
+    <div style="overflow:hidden;"><div class="media-placeholder portfolio-placeholder" aria-hidden="true"></div></div>
+    <div style="overflow:hidden;"><div class="media-placeholder portfolio-placeholder" aria-hidden="true"></div></div>
+  </div>
+</div>
+
+<!-- QUOTE -->
+<div class="quote-block">
+  <div class="quote-mark">"</div>
+  <div class="quote-text">Моя цель — помочь людям не только двигаться красивее, но и чувствовать себя лучше: стоять свободнее, выглядеть увереннее и возвращать телу ощущение лёгкости.</div>
+  <div class="quote-author">— РУСЛАН ИСМАИЛОВ</div>
+</div>
+
+<!-- SERVICES -->
+<div class="services">
+  <div class="section-eyebrow">НАПРАВЛЕНИЯ</div>
+  <div class="section-title">Чем я занимаюсь</div>
+  <div class="cards-grid">
+    <div class="scard">
+      <div class="scard-num">01</div>
+      <h3>Хореография</h3>
+      <p>Постановки для театра, шоу и мероприятий любого масштаба. Работа с любым стилем и уровнем подготовки.</p>
+      <span class="scard-accent">GallaDance · театр · шоу →</span>
+    </div>
+    <div class="scard">
+      <div class="scard-num">02</div>
+      <h3>Режиссура</h3>
+      <p>Танцевальные спектакли с сильным художественным высказыванием. От идеи до премьеры.</p>
+      <span class="scard-accent">«Фигаро» · «В джазе только девушки» →</span>
+    </div>
+    <div class="scard">
+      <div class="scard-num">03</div>
+      <h3>Осанка и биомеханика</h3>
+      <p>Индивидуальная работа с телом — выравнивание, снятие зажимов, восстановление естественного движения.</p>
+      <span class="scard-accent">Бесплатная онлайн-консультация →</span>
+    </div>
+  </div>
+</div>
+
+<!-- PRODUCTIONS -->
+<div class="productions">
+  <div class="section-eyebrow">РЕЖИССУРА</div>
+  <div class="section-title">Постановки</div>
+  <div class="prod-grid">
+    <div class="prod-card">
+      <div class="prod-tag">ТАНЦЕВАЛЬНЫЙ СПЕКТАКЛЬ · GALLADANCE</div>
+      <div class="prod-title">Безумный день, или<br>Женитьба Фигаро</div>
+      <div class="prod-desc">Режиссёр-хореограф. Музыкальная постановка с оригинальной хореографией на основе классического текста.</div>
+    </div>
+    <div class="prod-card">
+      <div class="prod-tag">ТАНЦЕВАЛЬНЫЙ СПЕКТАКЛЬ · GALLADANCE</div>
+      <div class="prod-title">В джазе только<br>девушки</div>
+      <div class="prod-desc">Режиссёр-хореограф. Джазовая постановка по мотивам культового фильма с живым танцевальным нарративом.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ACHIEVEMENTS -->
+<div class="achievements">
+  <div class="section-eyebrow">ДОСТИЖЕНИЯ</div>
+  <div class="section-title">Профессиональный путь</div>
+  <div class="ach-list">
+    <div class="ach-item">
+      <div class="ach-dot"></div>
+      <div class="ach-text-wrap">
+        <div class="ach-title-sm">Обладатель Кубка России</div>
+        <div class="ach-sub-sm">Современные танцевальные направления</div>
+      </div>
+    </div>
+    <div class="ach-item">
+      <div class="ach-dot" style="background:#1D9E75;"></div>
+      <div class="ach-text-wrap">
+        <div class="ach-title-sm">Финалист Чемпионата Европы</div>
+        <div class="ach-sub-sm">Международные соревнования</div>
+      </div>
+    </div>
+    <div class="ach-item">
+      <div class="ach-dot" style="background:#378ADD;"></div>
+      <div class="ach-text-wrap">
+        <div class="ach-title-sm">Член сборной России ОРТО</div>
+        <div class="ach-sub-sm">Многократный победитель всероссийских соревнований</div>
+      </div>
+    </div>
+    <div class="ach-item">
+      <div class="ach-dot"></div>
+      <div class="ach-text-wrap">
+        <div class="ach-title-sm">Номинант «Преподаватель года»</div>
+        <div class="ach-sub-sm">GallaDance, 2018</div>
+      </div>
+    </div>
+    <div class="ach-item">
+      <div class="ach-dot" style="background:#1D9E75;"></div>
+      <div class="ach-text-wrap">
+        <div class="ach-title-sm">МГКИ, педагог-хореограф</div>
+        <div class="ach-sub-sm">Московский государственный колледж искусств</div>
+      </div>
+    </div>
+    <div class="ach-item">
+      <div class="ach-dot" style="background:#378ADD;"></div>
+      <div class="ach-text-wrap">
+        <div class="ach-title-sm">Международные школы</div>
+        <div class="ach-sub-sm">Программы для детей и взрослых</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- REVIEWS -->
+<div style="padding:3.5rem 2.5rem; background:#080808; border-bottom:0.5px solid rgba(255,255,255,0.08);">
+  <div style="font-size:11px;color:#E8C4FF;letter-spacing:0.14em;font-weight:500;margin-bottom:0.5rem;">ОТЗЫВЫ</div>
+  <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:1.8rem;flex-wrap:wrap;">
+    <div style="font-size:26px;font-weight:500;color:#fff;letter-spacing:-0.01em;">Что говорят ученики</div>
+    <div style="display:flex;align-items:center;gap:6px;font-size:13px;color:rgba(255,255,255,0.4);">
+      <span style="color:#E8C4FF;">★★★★★</span> 5.0 · 14 отзывов на Профи.ру
+    </div>
+  </div>
+  <div class="reviews-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;">
+
+    <div style="background:#111;border:0.5px solid rgba(255,255,255,0.1);border-radius:18px;padding:1.6rem;display:flex;flex-direction:column;">
+      <div style="color:#E8C4FF;font-size:13px;margin-bottom:0.8rem;">★★★★★</div>
+      <div style="font-size:13px;color:rgba(255,255,255,0.65);line-height:1.7;flex:1;">«Заказывали Руслану постановку танца. Танец поставил в оговоренный срок, сам подобрал музыку под наши пожелания. На конкурсах завоёвываем первые места, жюри всегда хвалит.»</div>
+      <div style="margin-top:1.2rem;font-size:12px;font-weight:500;color:#fff;">Ольга</div>
+      <div style="font-size:11px;color:rgba(255,255,255,0.3);margin-top:2px;">Постановка танца · ноябрь 2024</div>
+    </div>
+
+    <div style="background:#111;border:0.5px solid rgba(255,255,255,0.1);border-radius:18px;padding:1.6rem;display:flex;flex-direction:column;">
+      <div style="color:#E8C4FF;font-size:13px;margin-bottom:0.8rem;">★★★★★</div>
+      <div style="font-size:13px;color:rgba(255,255,255,0.65);line-height:1.7;flex:1;">«Нашёл деликатный подход к нашему 9-летнему сыну, смог его заинтересовать занятиями! Руслан всегда идеально пунктуален, внимателен, приветлив и позитивен. Рекомендую от всей души!»</div>
+      <div style="margin-top:1.2rem;font-size:12px;font-weight:500;color:#fff;">Ольга</div>
+      <div style="font-size:11px;color:rgba(255,255,255,0.3);margin-top:2px;">Хип-хоп · июнь 2026</div>
+    </div>
+
+    <div style="background:#111;border:0.5px solid rgba(255,255,255,0.1);border-radius:18px;padding:1.6rem;display:flex;flex-direction:column;">
+      <div style="color:#E8C4FF;font-size:13px;margin-bottom:0.8rem;">★★★★★</div>
+      <div style="font-size:13px;color:rgba(255,255,255,0.65);line-height:1.7;flex:1;">«Я и мои дети (8 и 5 лет) очень довольны работой Руслана. Он очень внимателен к детям, правильно распределяет нагрузку, никогда не опаздывает. Доброжелателен и в меру эмоционален.»</div>
+      <div style="margin-top:1.2rem;font-size:12px;font-weight:500;color:#fff;">Ольга</div>
+      <div style="font-size:11px;color:rgba(255,255,255,0.3);margin-top:2px;">Клубные танцы</div>
+    </div>
+
+  </div>
+  <div style="text-align:center;margin-top:1.6rem;">
+    <a href="https://profi.ru/profile/IsmagilovRE" target="_blank" style="font-size:12px;color:rgba(255,255,255,0.4);text-decoration:none;border-bottom:0.5px solid rgba(255,255,255,0.2);padding-bottom:2px;">Смотреть все 14 отзывов на Профи.ру →</a>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-strip">
+  <div class="cta-left">
+    <h2>Начните работу с телом сегодня</h2>
+    <p>Онлайн-консультация — бесплатно. Онлайн или очно.</p>
+  </div>
+  <a href="https://t.me/voliamsir" target="_blank" class="btn-dark" style="text-decoration:none; display:inline-block;">Записаться →</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">RUSLAN ISMAILOV</div>
+  <div class="footer-links">
+    <a href="https://t.me/voliamsir" target="_blank">Telegram</a>
+    <a href="https://t.me/voliamsir" target="_blank">Telegram</a>
+    <a href="video.html">Видео</a>
+    <a href="contact.html">Контакты</a>
+  </div>
+</footer>
+
+
+<script>
+function toggleMobileNav(){
+  var m = document.getElementById('mobileNavPanel');
+  if(m) m.classList.toggle('open');
+}
+</script>
+</body>
+</html>
